@@ -1,0 +1,47 @@
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin - Skatepark</title>
+    <link rel="stylesheet" href="/src/css/admin.css" />
+  </head>
+  <body>
+    <h1>Administración de Participantes</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Foto</th>
+          <th>Nombre</th>
+          <th>Años de Experiencia</th>
+          <th>Especialidad</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each participants}}
+          <tr>
+            <th scope="row">{{@index}}</th>
+            <td><img src="/uploads/{{this.foto}}" alt="Foto" /></td>
+            <td>{{this.nombre}}</td>
+            <td>{{this.anos_experiencia}}</td>
+            <td>{{this.especialidad}}</td>
+            <td>{{this.estado}}</td>
+            <td>
+              {{#if (eq this.estado "aprobado")}}
+                Aprobado
+              {{else}}
+                <a
+                  href="/approve/{{this.id}}"
+                  class="btn btn-success"
+                >Aprobar</a>
+              {{/if}}
+              <a href="/delete/{{this.id}}" class="btn btn-danger">Eliminar</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <a href="/logout" class="btn btn-primary">Cerrar Sesión</a>
+  </body>
+</html>
